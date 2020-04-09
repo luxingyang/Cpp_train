@@ -1,27 +1,41 @@
 typedef		根据已有数据类型命名一个新的数据类型，如 typedef int size_t
 enum		枚举类型 enumeration，用户自定义其值的范围，如 enum color_enum {r,g,b} color; color=r;
 extern		声明“外部!”变量（或函数），常在主函数外进行，如extern int i。通常存在多个程序文件时使用，当使用extern时，变量只能定义一次，其他文件则用extern声明。注意定义（包含声明）、声明、初始化的差别；注意定义全剧变量和声明外部变量的区别。
-static		声明静态变量，在某个函数内用，其他函数不可见之，但之后进入这个函数，静态变量不会再重新初始化，而是延续上一次的值。在定义类时用来声明类的成员（变量/函数），则类的所有对象共用，且这个成员需要在外界初始化。
-::		作用域
+static		声明静态变量，在某个函数内用，其他函数不可见之，但之后进入这个函数，静态变量不会再重新初始化，而是延续上一次的值。在定义类时用来声明类的变量，则类的所有对象共用，且这个成员需要在外界初始化。还可以在定义类时声明类的函数
+::		作用域，范围解析符
+:		类的继承，Class Class2 : public Class1{...}; public可以改为private或protected，但不常用
 Ox, O		十六进制，八进制常量前缀
 #Define		预定义，本质是编译时进行字符替换，常用来定义常量，如#Define DATA_L 10
 const		常量限定符，如const int i=10; 和#Define不同，const规定了类型
-L"草"		wchar_t类型的字符常量，可以赋值给对应类型的字符，如wchar_t grass = L"草"
+L"草"		wchar_t类型的字符常量，可以赋值给对应类型的对象，如wchar_t grass = L"草"
 *		定义时可以读作pointer to，声明可以倒读，如int * const * p //p is a pointer to const pointer to int
 voltile		限定符，阻止编译器优化
 && || ！	逻辑运算符
 & | ^ ~	>> <<	位运算符
 Condition?X:Y	
 break contiune	跳出循环（或switch） 结束当次循环
-[capture](params)->return_type{body}	Lambda函数，capture定义参数传递方式：x,&x,*px：值，引用，指针
-cmath		包含很多数学函数的头文件，有点特点的：fabs(), floor()
+[capture](params)->return_type{body}	Lambda函数，capture定义参数传递方式：x,&x,*px：值，引用，指针；params为输入的参数及其类型；
+*(arr+n)	访问数组的第n+1个元素，等同于arr[n]
+vector<type> arr定义可变长度的动态数组，且包含很多方法，如arr.push_back, arr.pop_back，需要头文件vector	
+Sring		C++中的字符串类，注意C中是没有的
+friend		关键字，声明友元函数或友元类
+inline		关键字，声明内联函数（在调用的地方都有代码副本），类函数都是内联函数；
+this		指针，在类的成员函数内部，它可以用来指向调用的类的对象。this->member1
+->		访问类/结构体的成员，左边是地址；若左边是对象本身，则用“.”即可。
+重载		很厉害的操作，可以让同一个函数或运算符（+,-,*,/,==,||等）有多个定义，编译器会挑选最合适的定义（重载决策）：函数直接定义即可；操作符也可以理解为一个函数，常用于类定义内部，需要加上operator，如 Class1 operator+(double x, double y)
+virtual		虚函数声明，声明纯虚函数则是 virtrual int fun_1() = 0;
+
+
+
+cmath		包含很多数学函数的头文件，有点特点的：fabs(), floor(), pow()
 ctime
 cstdlib		包含很多类型、函数，常用有wchar_t, srand(), rand(), 其中srand((unsigned)time(NULL))
 cstdio		标准输入输出头文件，包含printf，可以不用这个头文件，直接using namespce std;
+iostream	除了常见的cin, cout, 还有cerr, clog
+string		c++风格的字符串处理相关的头文件，包含cstring中的所有功能，如strcpy(),strcat()，还能完成+等操作，建议放弃cstring，改用string
 algorithm	算法头文件
-*(arr+n)	访问数组的第n+1个元素，等同于arr[n]
-vector<type> arr定义可变长度的动态数组，且包含很多方法，如arr.push_back, arr.pop_back，需要头文件vector	
-Sring		C++中的字符串类，需要String头文件，注意C中是没有的，若是利用printf输出，则需要用到.c_str()方法
+
+
 
 买500元耳机遭父母拒绝有感
 股票炒在一五年；
